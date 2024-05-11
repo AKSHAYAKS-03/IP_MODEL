@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+  <product>
+    <code>101</code>
+    <name>camera</name>
+    <description>device for recording an image of an object on a light-sensitive surface</description>
+    <price>80000</price>
+    <stock>30</stock>
+  </product>
+  <product>
+    <code>102</code>
+    <name>speaker</name>
+    <description>the electromagnetic wave that converts electromagnetic waves into sound waves</description>
+    <price>48000</price>
+    <stock>24</stock>
+  </product>
+  <product>
+    <code>103</code>
+    <name>mike</name>
+    <description>a device that is used to make sounds louder or to record them on a tape recorder</description>
+    <price>20000</price>
+    <stock>28</stock>
+  </product>
+  <product>
+    <code>104</code>
+    <name>screen</name>
+    <description>is the flat vertical surface on which pictures or words are shown in a cinema.</description>
+    <price>50000</price>
+    <stock>28</stock>
+  </product>
+</products>

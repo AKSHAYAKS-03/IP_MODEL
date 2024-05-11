@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet type="text/xsl" href="6.xsl"?>
+
+<students>
+    <student>
+        <name>aaa</name>
+        <grade>C</grade>
+    </student>
+    <student>
+        <name>bb</name>
+        <grade>A</grade>
+    </student>
+    <student>
+        <name>ccc</name>
+        <grade>O</grade>
+    </student>
+    <student>
+        <name>ddd</name>
+        <grade>A+</grade>
+    </student>
+    <student>
+        <name>eee</name>
+        <grade>B</grade>
+    </student>
+    <student>
+        <name>fff</name>
+        <grade>C</grade>
+    </student>
+</students>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Example</title>
+</head>
+<body>
+    <center>
+    <label for="input">Enter some text:</label><br><br> 
+    <input type="text" id="input"><br><br>
+    <button onclick="getData()">Get Data</button><br><br>
+    <div id="output"></div>
+
+    <script>
+        function getData() {
+            var inputText = document.getElementById("input").value;
+            var xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("output").innerHTML = this.responseText;
+                }
+            };
+
+            // Make a GET request to the server-side script (server_script.php)
+            // Pass the input text as a parameter
+            xhttp.open("GET", "7-php.php?input=" + inputText, true);
+            xhttp.send();
+        }
+    </script>
+        </center>
+
+</body>
+</html>
