@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Calculator</title>
+</head>
+<body>
+    <h1>Loan Calculator</h1>
+    
+    <form id="loanForm" action="NewServlet" method="post">
+        <label for="principalAmount">Principal Amount:</label>
+        <input type="number" id="principalAmount" name="principalAmount" required><br><br>
+
+        <label for="interestRate">Interest Rate (%):</label>
+        <input type="number" id="interestRate" name="interestRate" step="0.01" required><br><br>
+
+        <label for="loanPeriod">Loan Period (years):</label>
+        <input type="number" id="loanPeriod" name="loanPeriod" required><br><br>
+
+        <button type="submit">Calculate Monthly Payment</button>
+    </form>
+
+    <div id="result"></div>
+</body>
+</html>
+
+
+
+
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet(urlPatterns = {"/NewServlet"})
+public class NewServlet extends HttpServlet {
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+   
+            double principal = Double.parseDouble(request.getParameter("principalAmount"));
+            double interestRate = Double.parseDouble(request.getParameter("interestRate")) / 100;
+            int loanPeriod = Integer.parseInt(request.getParameter("loanPeriod"));
+
+            double monthlyInterestRate = interestRate / 12;
+            int numberOfPayments = loanPeriod * 12;
+
+            double monthlyPayment = (principal * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -numberOfPayments));
+
+            out.println("Monthly Payment: $" + monthlyPayment);
+        }
+    }
