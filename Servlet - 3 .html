@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Age Calculator</title>
+</head>
+<body>
+    <h2>Enter Your Date of Birth</h2>
+    <form action="NewServlet" method="post">
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob">
+        <br><br>
+        <input type="submit" value="Calculate Age">
+    </form>
+</body>
+</html>
+
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.Period;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet(urlPatterns = {"/NewServlet"})
+public class NewServlet extends HttpServlet {
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+
+        String dobString = request.getParameter("dob");
+        
+        // Parse the date of birth string into LocalDate object
+        LocalDate dob = LocalDate.parse(dobString);
+        
+        // Calculate age
+        LocalDate currentDate = LocalDate.now();
+        Period age = Period.between(dob, currentDate);
+        
+        // Convert age to string
+        String ageString = age.getYears() + " years, " + age.getMonths() + " months, " + age.getDays() + " days";
+        
+        // Set the response content type
+        response.setContentType("text/html");
+        
+        // Write the age string to the response
+        response.getWriter().write("<html><head><title>Age Result</title></head><body>");
+        response.getWriter().write("<h2>Your Age is: " + ageString + "</h2>");
+        response.getWriter().write("</body></html>");
+    }
+}
