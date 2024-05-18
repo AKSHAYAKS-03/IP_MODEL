@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Dashes Between Even Numbers</title>
+</head>
+<body>
+    <h1>Insert Dashes Between Even Numbers</h1>
+    
+    <input type="text" id="numberInput" placeholder="Enter Number">
+    <br><br>
+    <button onclick="processInput()">Insert Dashes</button>
+    
+    <br><br>
+    <div id="result"></div>
+
+    <script>
+        function processInput() {
+            const input = document.getElementById('numberInput').value;
+            const newNumber = insertDashesBetweenEvens(input);
+            document.getElementById('result').innerHTML = "Answer: " + newNumber;
+        }
+
+        function insertDashesBetweenEvens(num) {
+            let result = "";
+
+            // Iterate through the string characters
+            for (let i = 0; i < num.length; i++) {
+                result += num[i];
+
+                // Check if the current and next characters are both even
+                if (i < num.length - 1) {
+                    const currentDigit = parseInt(num[i]);
+                    const nextDigit = parseInt(num[i + 1]);
+                    if (currentDigit % 2 === 0 && nextDigit % 2 === 0) {
+                        result += "-";
+                    }
+                }
+            }
+
+            return result;
+        }
+    </script>
+</body>
+</html>
